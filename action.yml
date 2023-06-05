@@ -14,6 +14,9 @@ inputs:
   filename:
     description: 'Filename for assembly info'
     default: 'AssemblyInfo.cs'
+  buildnumber:
+    description: 'If `true` adds the build number to the version'
+    default: true
   recursive:
     description: 'If `true`, update all assembly info files including in files in subdirectories'
     default: true
