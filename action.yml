@@ -36,5 +36,4 @@ runs:
 outputs:
   version:
     description: Version applied to assembly info
-    value: ${{steps.setversion.outputs.version}}
-    
+    value: ${{ steps.setversion.outputs.version }}
