@@ -3,6 +3,7 @@ $directory = $Env:DIRECTORY
 $fileName = $Env:FILENAME
 $recursive = [System.Convert]::ToBoolean($Env:RECURSIVE)
 $runNumber = $Env:RUN_NUMBER
+$useBuildNumber = [System.Convert]::ToBoolean($Env:USE_BUILD_NUMBER)
 $githubOutput = $Env:GITHUB_OUTPUT
 
 function SetVersion($file)
@@ -28,7 +29,14 @@ function SetVersion($file)
 $isSemVer = [Regex]::Match($version, '^\d+\.\d+(\.\d+)?')
 if ($isSemVer.success)
 {
-	$version = $isSemVer.Value + '.' + $runNumber
+	if( $useBuildNumber )
+	{
+		$version = $isSemVer.Value + '.' + $runNumber
+	}
+	else
+	{
+		$version = $isSemVer.Value
+	}	
 }
 else
 {
