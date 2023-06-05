@@ -26,7 +26,7 @@ function SetVersion($file)
 	}
 }
 
-$isSemVer = [Regex]::Match($version, '^\d+\.\d+(\.\d+)?')
+$isSemVer = [Regex]::Match($version, '^\d+\.\d+(\.\d+\.\d+)?')
 if ($isSemVer.success)
 {
 	if( $useBuildNumber )
