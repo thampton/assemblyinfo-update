@@ -47,7 +47,7 @@ jobs:
         id: test-setversion-with-params-no-buildnumber
         uses: ./    # Just point to the main folder so the latest code is always used
         with:
-          version: '9.9.9-alpha.103'
+          version: '9.9.9.103'
           directory: './test/'
           filename: 'SharedAssemblyInfo.cs'
           recursive: false
