@@ -2,7 +2,7 @@
 
 ## set-version
 
-This Github action updates _AssemblyInfo.cs_ files in .NET projects with the specified version number, suffixed with [`github.run_number`](https://docs.github.com/en/actions/learn-github-actions/contexts).
+This Github action updates _AssemblyInfo.cs_ files in .NET projects with the specified version number by default suffixed with [`github.run_number`](https://docs.github.com/en/actions/learn-github-actions/contexts).
 
 The version number is expected to be in [SemVer format](https://semver.org/) with at least the major and minor version numbers, e.g. `1.20`, `2.17.4`, `1.4.9-alpha`.  Any pre-release/metadata suffix will be discarded and [`github.run_number`](https://docs.github.com/en/actions/learn-github-actions/contexts) appended to produce a 3- or 4-element version number.
 
@@ -16,6 +16,7 @@ This action is useful for automatically updating the assembly info version of a 
 * `directory`: the directory where the assembly info file is located (or the top-most directory to search if `recursive` is `true`).  Defaults to '.\\'
 * `filename`: the file name of the assembly info file.  Defaults to 'AssemblyInfo.cs'
 * `recursive`: if `true`, updates all assembly info files matching the `filename` argument, in all subdirectories.  Defaults to `true`
+* `usebuildnumber`: if `true` adds build number to the provided version. Default to `true`
 
 ### Output arguments
 
