@@ -29,7 +29,7 @@ function SetVersion($file)
 $isSemVer = [Regex]::Match($version, '^\d+\.\d+(\.\d+)?')
 if ($isSemVer.success)
 {
-	if( $useBuildNmber )
+	if( $useBuildNumber )
 	{
 		$version = $isSemVer.Value + '.' + $runNumber
 	}
