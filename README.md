@@ -17,6 +17,7 @@ This action is useful for automatically updating the assembly info version of a 
 * `filename`: the file name of the assembly info file.  Defaults to 'AssemblyInfo.cs'
 * `recursive`: if `true`, updates all assembly info files matching the `filename` argument, in all subdirectories.  Defaults to `true`
 * `usebuildnumber`: if `true` adds build number to the provided version. Default to `true`
+* `failifnomatchfound` : If `true` fails if no matching files are found. Default to `false`
 
 ### Output arguments
 
