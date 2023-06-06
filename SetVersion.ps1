@@ -27,16 +27,39 @@ function SetVersion($file)
 }
 
 $isSemVer = [Regex]::Match($version, '^(0|[1-9]\d*)\.(0|[1-9]\d*)\.(0|[1-9]\d*)(?:-((?:0|[1-9]\d*|\d*[a-zA-Z-][0-9a-zA-Z-]*)(?:\.(?:0|[1-9]\d*|\d*[a-zA-Z-][0-9a-zA-Z-]*))*))?(?:\+([0-9a-zA-Z-]+(?:\.[0-9a-zA-Z-]+)*))?$')
-if ($isSemVer.success)
+$isDecmialMajorMinorOrPatch = [Regex]::Match($version, '^\d+\.\d+(\.\d+)?')
+if ( $isSemVer.success || $isDecmialMajorMinorOrPatch.success )
 {
-	if( $useBuildNumber )
+	if ( $isDecmialMajorMinorOrPatch.success ) 
 	{
-		$version = $isSemVer.Value + '.' + $runNumber
+		if( $useBuildNumber )
+		{
+			$version = $isDecmialMajorMinorOrPatch.Value + '.' + $runNumber
+		}
+		else
+		{
+			$version = $isDecmialMajorMinorOrPatch.Value
+		}
 	}
 	else
 	{
-		$version = $isSemVer.Value
-	}	
+		$major = $isSemVer.Groups[0].Value
+		$minor = $isSemVer.Groups[1].Value
+		$patch = $isSemVer.Groups[2].Value
+		
+		$decimalMajor = [Regex]::Match($major, '[\d\.\d]+')
+		$decimalMinor = [Regex]::Match($minor, '[\d\.\d]+')
+		$decimalPatch = [Regex]::Match($patch, '[\d\.\d]+')
+		
+		if( $useBuildNumber )
+		{
+			$version = $decimalMajor.Value + '.' + $decimalMinor.Value + '.' $decimalPatch.Value + '.' + $runNumber
+		}
+		else
+		{
+			$version = $decimalMajor.Value + '.' + $decimalMinor.Value + '.' $decimalPatch.Value
+		}	
+	}
 }
 else
 {
