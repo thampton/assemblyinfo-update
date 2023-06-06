@@ -53,11 +53,11 @@ if ( $isSemVer.success || $isDecmialMajorMinorOrPatch.success )
 		
 		if( $useBuildNumber )
 		{
-			$version = $decimalMajor.Value + '.' + $decimalMinor.Value + '.' $decimalPatch.Value + '.' + $runNumber
+			$version = $decimalMajor.Value + '.' + $decimalMinor.Value + '.' + $decimalPatch.Value + '.' + $runNumber
 		}
 		else
 		{
-			$version = $decimalMajor.Value + '.' + $decimalMinor.Value + '.' $decimalPatch.Value
+			$version = $decimalMajor.Value + '.' + $decimalMinor.Value + '.' + $decimalPatch.Value
 		}	
 	}
 }
