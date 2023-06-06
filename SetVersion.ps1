@@ -78,6 +78,7 @@ if ($recursive)
 else
 {
 	$count = (Get-ChildItem $directory -Filter $fileName | Measure-Object).Count
+	Write-Host "Count of Files Found: $count"
 	if ( $failIfNoMatchFound -and $count -eq 0 ) {
 		exit 1
 	}
