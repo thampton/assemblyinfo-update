@@ -17,6 +17,9 @@ inputs:
   usebuildnumber:
     description: 'If `true` adds the build number to the version'
     default: true
+  failifnomatchfound:  
+    description: 'If `true` fails if no matching files are found
+    default: false
   recursive:
     description: 'If `true`, update all assembly info files including in files in subdirectories'
     default: true
@@ -32,6 +35,7 @@ runs:
         RECURSIVE:  ${{ inputs.recursive }}
         RUN_NUMBER: ${{ github.run_number }}
         USE_BUILD_NUMBER: ${{ inputs.usebuildnumber }}
+        FAIL_IF_NO_MATCH_FOUND: ${{ inputs.failifnomatchfound }}
       run: ${{ github.action_path }}\SetVersion.ps1
 outputs:
   version:
