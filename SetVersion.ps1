@@ -69,6 +69,11 @@ else
 
 if ($recursive)
 {
+	$count = (Get-ChildItem $directory -Recurse -Include $fileName | Measure-Object).Count
+	Write-Host "Count of Files Found: $count"
+	if ( $failIfNoMatchFound -and $count -eq 0 ) {
+		exit 1
+	}
 	$assemblyInfoFiles = Get-ChildItem $directory -Recurse -Include $fileName
 	foreach($file in $assemblyInfoFiles)
 	{	
