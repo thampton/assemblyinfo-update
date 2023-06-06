@@ -1,0 +1,38 @@
+name: test-actions
+
+on:
+  push:
+    branches:
+      - develop
+      - main
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+      - name: Check out the repository
+        uses: actions/checkout@v3
+
+      - name: Test output of 'assemblyinfo-update'
+        run: echo "AssemblyInfo updated to ${{steps.test-setversion.outputs.version}}"
+
+      - name: Test setting version with custom parameters
+        id: test-setversion-with-params
+        uses: ./    # Just point to the main folder so the latest code is always used
+        with:
+          version: '9.9.9-alpha'
+          directory: './test/'
+          filename: 'foobar.cs'
+          recursive: true
+       
+      - name: Test setting version with custom parameters
+        id: test-setversion-with-params-fail-on-not-found
+        uses: ./    # Just point to the main folder so the latest code is always used
+        with:
+          version: '9.9.9-alpha'
+          directory: './test/'
+          filename: 'foobar.cs'
+          recursive: true
