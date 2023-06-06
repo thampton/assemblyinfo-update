@@ -4,6 +4,7 @@ $fileName = $Env:FILENAME
 $recursive = [System.Convert]::ToBoolean($Env:RECURSIVE)
 $runNumber = $Env:RUN_NUMBER
 $useBuildNumber = [System.Convert]::ToBoolean($Env:USE_BUILD_NUMBER)
+$failIfNoMatchFound = [System.Convert]::ToBoolean($Env:FAIL_IF_NO_MATCH_FOUND)
 $githubOutput = $Env:GITHUB_OUTPUT
 
 function SetVersion($file)
@@ -76,8 +77,10 @@ if ($recursive)
 }
 else
 {
+	$count = (Get-ChildItem $directory -Filter $fileName | Measure-Object).Count
+	if ( $failIfNoMatchFound -and $count -eq 0 ) {
+		exit 1
+	}
 	$file = Get-ChildItem $directory -Filter $fileName | Select-Object -First 1
 	SetVersion($file)
 }
-
-
