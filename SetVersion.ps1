@@ -28,7 +28,7 @@ function SetVersion($file)
 
 $isSemVer = [Regex]::Match($version, '^(0|[1-9]\d*)\.(0|[1-9]\d*)\.(0|[1-9]\d*)(?:-((?:0|[1-9]\d*|\d*[a-zA-Z-][0-9a-zA-Z-]*)(?:\.(?:0|[1-9]\d*|\d*[a-zA-Z-][0-9a-zA-Z-]*))*))?(?:\+([0-9a-zA-Z-]+(?:\.[0-9a-zA-Z-]+)*))?$')
 $isDecmialMajorMinorOrPatch = [Regex]::Match($version, '^\d+\.\d+(\.\d+)?')
-if ( $isSemVer.success || $isDecmialMajorMinorOrPatch.success )
+if ( $isSemVer.success -or $isDecmialMajorMinorOrPatch.success )
 {
 	if ( $isDecmialMajorMinorOrPatch.success ) 
 	{
