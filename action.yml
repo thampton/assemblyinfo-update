@@ -18,7 +18,7 @@ inputs:
     description: 'If `true` adds the build number to the version'
     default: true
   failifnomatchfound:  
-    description: 'If `true` fails if no matching files are found
+    description: 'If `true` fails if no matching files are found'
     default: false
   recursive:
     description: 'If `true`, update all assembly info files including in files in subdirectories'
