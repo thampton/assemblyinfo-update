@@ -20,6 +20,7 @@ jobs:
         run: echo "AssemblyInfo updated to ${{steps.test-setversion.outputs.version}}"
 
       - name: Test setting version with custom parameters
+        continue-on-error: true
         id: test-setversion-with-params
         uses: ./    # Just point to the main folder so the latest code is always used
         with:
@@ -29,6 +30,7 @@ jobs:
           recursive: true
        
       - name: Test setting version with custom parameters
+        continue-on-error: true
         id: test-setversion-with-params-fail-on-not-found
         uses: ./    # Just point to the main folder so the latest code is always used
         with:
